@@ -927,6 +927,7 @@ Outlook_nymail()
     Return
 }
 
+; Manger kobling til FF vogntype
 ;; Excel
 l_excel_vl_til_P6_A:
 l_excel_vl_til_P6_B:
@@ -934,10 +935,15 @@ l_excel_vl_til_P6_B:
         vl := Excel_vl_til_udklip()
         if vl = 0
         {
-            MsgBox, , Klik på vognløb, Du skal klikke på vognløbet,
+            MsgBox, , Klik på vognløb, Du skal klikke på vognløbet eller vogntypen,
             return
         }
-        Else
+        if (StrLen(vl) = 1)
+            {
+                MsgBox, , vogntype, Du har klikket på vogntype, 
+                return
+            }
+        if (StrLen(vl) = 5)
         {
             WinActivate, PLANET
             P6_udfyld_vl(vl)
@@ -974,10 +980,14 @@ Excel_vl_til_udklip(vl:="")
         vl := clipboard
         vl := StrReplace(vl, "`n", "")
         vl := StrReplace(vl, "`r", "")
-        if (StrLen(vl) = 5) ; fem c<ifre plus new-line
+        if (StrLen(vl) = 5) 
         {
             return vl
         }
+        if (StrLen(vl) = 1) 
+            {
+                return vl
+            }
         else
             return 0
     }
