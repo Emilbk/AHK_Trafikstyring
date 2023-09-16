@@ -1,5 +1,4 @@
 ﻿#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Requires AutoHotkey v1.1.33
 #InstallKeybdHook
 #InstallMouseHook
 ;FileEncoding UTF-8
@@ -931,11 +930,11 @@ Outlook_nymail()
 ;; Excel
 l_excel_vl_til_P6_A:
 l_excel_vl_til_P6_B:
-    {
+{
         vl := Excel_vl_til_udklip()
         if vl = 0
         {
-            MsgBox, , Klik på vognløb, Du skal klikke på vognløbet eller vogntypen,
+            MsgBox, , Klik på vognløb, Du skal klikke på vognløbsnummer, vogntypen, TTJ eller trip-/komfortstol
             return
         }
         if (StrLen(vl) = 1)
@@ -943,7 +942,7 @@ l_excel_vl_til_P6_B:
                 MsgBox, , vogntype, Du har klikket på vogntype, 
                 return
             }
-        if (StrLen(vl) = 5)
+        if (StrLen(vl) = 5 and InStr(vl, 3))
         {
             WinActivate, PLANET
             P6_udfyld_vl(vl)
@@ -959,6 +958,36 @@ l_excel_vl_til_P6_B:
                     return
                 }
         }
+        if (vl = "larve")
+            {
+                MsgBox, , , Du har klikket på larvefødder, 
+                return
+            }
+        if (vl = "hjul")
+            {
+                MsgBox, , , Du har klikket på hjul,
+                return 
+            }
+        if (vl = "Autostol 9-36 kg.")
+            {
+                MsgBox, , , Du har klikket på 9-36,
+                return
+            }
+        if (vl = "Autostol 0-13 kg")
+            {
+                MsgBox, , , Du har klikket på 0-13, 
+                return
+            }
+        if (vl = "tripstol")
+            {
+                MsgBox, , , Du har klikket på tripstol, 
+                return
+            }
+        if (vl = "Trip, Komf.")
+            {
+                MsgBox, , , Du har klikket på trip-/komfortstol, 
+            }
+
         return
     }
 
@@ -980,14 +1009,10 @@ Excel_vl_til_udklip(vl:="")
         vl := clipboard
         vl := StrReplace(vl, "`n", "")
         vl := StrReplace(vl, "`r", "")
-        if (StrLen(vl) = 5) 
+        if (InStr(vl, "3") or StrLen(vl) = 1) or vl = "hjul" or vl = "larve" or InStr(vl, "autostol") or InStr(vl, "trip")
         {
             return vl
         }
-        if (StrLen(vl) = 1) 
-            {
-                return vl
-            }
         else
             return 0
     }
