@@ -1564,7 +1564,6 @@ global hk :=
 sys_genveje()
 
 ; MsgBox, , , % genvej_navn.3 
-MsgBox, , , % hk
 
 
 Gui Font, s9, Segoe UI
@@ -1669,7 +1668,6 @@ Gui Add, Text, x248 y592 w97 h23 +0x200, % genvej_ren.3
 Gui Tab, Hej
 Gui Add, Text, x12 y105 w464 h0 +0x10
 Gui Tab, Misc
-Gui Add, Picture, x38 y130 w640 h360, C:\Users\emilb\Pictures\vlcsnap-2022-03-12-16h57m04s067.png
 Gui Tab
 
 
