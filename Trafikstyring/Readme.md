@@ -1,6 +1,5 @@
 # Readme
 
-## Tekst til chf
+## SygehusGUI
 
-- hydra-opsætning
-- skriv stop nummer-box
+- Skriv ind i funktion
