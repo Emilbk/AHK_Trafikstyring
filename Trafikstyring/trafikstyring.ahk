@@ -486,6 +486,7 @@ P6_planvindue()
     global s
     P6_aktiver()
     P6_alt_menu("{alt}", "tp")
+    return
 }
 
 ; ***

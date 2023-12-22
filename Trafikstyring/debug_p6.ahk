@@ -18,7 +18,7 @@ F10::
     WinActivate, pl
     return
 }
-F5::
+^+F10::
 {
     VSC := WinExist("ahk_exe Code.exe")
     pl:= WinExist("ahk_exe WIFICA32.exe")
