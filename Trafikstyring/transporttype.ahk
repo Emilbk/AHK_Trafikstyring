@@ -131,6 +131,7 @@ p6_ret_transportype_hent_vl()
 }
 p6_ret_transportype()
 {
+    sleep 40
     InputBox, dato, dato, indsæt dato, , , , , , , , 24
     if (ErrorLevel = 1)
         ExitApp
@@ -139,6 +140,7 @@ p6_ret_transportype()
     if (ErrorLevel = 1)
         ExitApp
     vl_seneste := vl_seneste - 1
+    sleep 40
     InputBox, start_vl, Start-VL, Indtast første vl,, , , , , , , %vl_seneste%
     P6_planvindue()
     P6_alt_menu("{alt}", "tl")
@@ -183,18 +185,18 @@ p6_ret_transportype()
             barn1 := 1 ; slet
             Clipboard :=
             SendInput, +{f10}c
-            sleep 40
             clipwait 1
-                sleep 200
-                trtype := clipboard
+            sleep 80
+            trtype := clipboard
             if (trtype = "fyn24" or trtype = "syd24")
                 {
                     ; MsgBox, , , fundet
                     SendInput, {delete}
                     trtype := "slettet"
-                    SendInput, {tab}
                     sleep 20
                 }
+            if (trtype = "")
+                {}
             Else
                 {
                     SendInput, {tab}
